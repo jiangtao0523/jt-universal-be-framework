@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>cn.jt</groupId>
+    <artifactId>jt-dependencies</artifactId>
+    <version>${revision}</version>
+    <packaging>pom</packaging>
+
+    <name>${project.artifactId}</name>
+    <description>基础 bom 文件，管理整个项目的依赖版本</description>
+
+    <properties>
+        <revision>0.1</revision>
+        <flatten-maven-plugin.version>1.5.0</flatten-maven-plugin.version>
+        <!-- 统一依赖管理 -->
+        <spring.boot.version>2.7.18</spring.boot.version>
+        <!-- Web 相关 -->
+
+        <!-- DB 相关 -->
+
+        <!-- 消息队列 -->
+
+        <!-- 服务保障相关 -->
+
+        <!-- 监控相关 -->
+
+        <!-- Test 测试相关 -->
+
+        <!-- Bpm 工作流相关 -->
+
+        <!-- 工具类相关 -->
+        <lombok.version>1.18.30</lombok.version>
+        <mapstruct.version>1.5.5.Final</mapstruct.version>
+
+        <!-- 三方云服务相关 -->
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <!-- 统一依赖管理 -->
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-dependencies</artifactId>
+                <version>${spring.boot.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- 业务组件 -->
+
+            <!-- Spring 核心 -->
+            <dependency>
+                <!-- 用于生成自定义的 Spring @ConfigurationProperties 配置类的说明文件 -->
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-configuration-processor</artifactId>
+                <version>${spring.boot.version}</version>
+            </dependency>
+
+            <!-- Web 相关 -->
+
+            <!-- DB 相关 -->
+
+            <!-- Job 定时任务相关 -->
+
+            <!-- 消息队列相关 -->
+
+            <!-- 服务保障相关 -->
+
+            <!-- 监控相关 -->
+
+            <!-- Test 测试相关 -->
+
+            <!-- 工作流相关 -->
+
+            <!-- 工具类相关 -->
+
+            <!-- 三方云服务相关 -->
+
+            <!-- SMS SDK begin -->
+
+            <!-- 积木报表-->
+
+            <!-- UReport2 报表-->
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <!-- 统一 revision 版本 -->
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>flatten-maven-plugin</artifactId>
+                <version>${flatten-maven-plugin.version}</version>
+                <configuration>
+                    <flattenMode>resolveCiFriendliesOnly</flattenMode>
+                    <updatePomFile>true</updatePomFile>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>flatten</goal>
+                        </goals>
+                        <id>flatten</id>
+                        <phase>process-resources</phase>
+                    </execution>
+                    <execution>
+                        <goals>
+                            <goal>clean</goal>
+                        </goals>
+                        <id>flatten.clean</id>
+                        <phase>clean</phase>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
